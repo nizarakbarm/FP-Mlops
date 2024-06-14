@@ -15,12 +15,12 @@ jobs:
     
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           node-version: '16.x'
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: '3.8'
 
@@ -29,6 +29,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run unit tests
+      - name: Run unit tests for model
         run: |
-          python -m unittest discover -s test -p 'test_model.py' 
+          python -m pytest --rootdir="." test/test_model.py
