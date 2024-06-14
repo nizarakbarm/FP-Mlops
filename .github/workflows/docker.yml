@@ -27,7 +27,7 @@ permissions:
 
 jobs:
     hadolint:
-      if: github.event_name	== 'pull_request' && github.event_name == 'push'
+      if: github.event_name	== 'pull_request' || github.event_name == 'push'
       permissions:
           contents: write
           issues: write
@@ -93,7 +93,7 @@ jobs:
 
     trivy_and_push:
       needs: [hadolint]
-      if: github.event_name	== 'pull_request' && github.event_name == 'push'
+      if: github.event_name	== 'pull_request' || github.event_name == 'push'
       runs-on: ubuntu-latest
       steps:
       - name: Checkout
